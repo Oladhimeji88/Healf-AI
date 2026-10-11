@@ -85,7 +85,7 @@ export default function ProductRail({ title, subtitle, products, onAdd }: Props)
                 type="button"
                 onClick={() => onAdd(product)}
                 className="absolute bottom-3 right-3 grid size-8 place-items-center rounded-full bg-white text-xl transition hover:bg-black hover:text-white"
-                aria-label={`Add ${product.name} to bag`}
+                aria-label={`Add ${product.name} to plan`}
               >
                 +
               </button>

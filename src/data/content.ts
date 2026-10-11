@@ -10,7 +10,13 @@ export type Product = {
   badges?: string[]
 }
 
-export const NAV_ITEMS = ["EAT", "MOVE", "MIND", "SLEEP", "Healf Bloods"]
+export const NAV_ITEMS = [
+  { label: "Platform", href: "#platform" },
+  { label: "Pillars", href: "#framework" },
+  { label: "Bloods", href: "#bloods" },
+  { label: "Marketplace", href: "#marketplace" },
+  { label: "Journal", href: "#journal" },
+]
 
 export const bestSellers: Product[] = [
   {
@@ -83,26 +89,6 @@ export const certified: Product[] = [
   },
 ]
 
-export const pillars = [
-  { image: "9c99b.png", label: "EAT" },
-  { image: "f1416.png", label: "MOVE" },
-  { image: "1de3b.png", label: "MIND" },
-  { image: "88616.png", label: "SLEEP" },
-]
-
-export const collections = [
-  "Electrolytes",
-  "Vitamins and Supplements",
-  "Gut Health",
-  "Magnesium",
-  "Collagen",
-  "Skincare",
-  "Creatine",
-  "Omega-3",
-  "Protein",
-  "Red Light",
-]
-
 export const articles = [
   {
     image: "a4fe5.png",
@@ -154,28 +140,24 @@ export const reviews = [
 ]
 
 export const footerColumns = [
-  { heading: "Shop", links: ["Eat", "Move", "Mind", "Sleep", "Shop All"] },
   {
-    heading: "Explore",
-    links: [
-      "The Healf Source",
-      "Our Story",
-      "Curation Process",
-      "Careers",
-      "Refer a Friend",
-    ],
+    heading: "Platform",
+    links: ["Healf Score", "Healf Bloods", "Your Plan", "Marketplace"],
+  },
+  { heading: "Pillars", links: ["Eat", "Move", "Mind", "Sleep"] },
+  {
+    heading: "Company",
+    links: ["Our Definition", "The Healf Standard", "Journal", "Careers"],
   },
   {
     heading: "Support",
-    links: [
-      "Contact Us",
-      "Track Order",
-      "Start a Return",
-      "FAQs",
-      "Privacy Policy",
-    ],
+    links: ["Contact Us", "Track Order", "Start a Return", "Privacy Policy"],
   },
 ]
+
+export const allProducts: Product[] = [...bestSellers, ...certified].filter(
+  (p, i, all) => all.findIndex((q) => q.id === p.id) === i,
+)
 
 const gbp = new Intl.NumberFormat("en-GB", {
   style: "currency",

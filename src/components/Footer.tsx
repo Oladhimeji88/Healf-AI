@@ -15,12 +15,11 @@ export default function Footer() {
   return (
     <footer className="bg-black px-4 pb-6 pt-16 text-white">
       <div className="mx-auto max-w-[1408px]">
-        <div className="grid gap-12 border-b border-white/20 pb-14 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 border-b border-white/20 pb-14 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <div>
             <h2 className="text-2xl font-medium">Learn</h2>
             <p className="mt-3 text-sm">
-              Nourish your MIND with weekly wellbeing tips, news, and product
-              offers.
+              Weekly research, new findings and product news from the Healf team.
             </p>
             <form
               onSubmit={onSubmit}
@@ -63,6 +62,11 @@ export default function Footer() {
           <p>Copyright © 2026, Healf. All rights reserved.</p>
           <p>EN · GBP</p>
         </div>
+        <p className="mt-6 max-w-3xl text-xs leading-5 text-white/50">
+          Healf provides wellbeing information and products and is not a
+          substitute for professional medical advice, diagnosis or treatment.
+          Always speak to a qualified clinician about your health.
+        </p>
       </div>
     </footer>
   )

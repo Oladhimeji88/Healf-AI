@@ -5,9 +5,9 @@ export default function Journal() {
   return (
     <>
       <section className="page-section py-16 lg:py-20">
-        <div className="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <h2 className="text-4xl sm:text-5xl">The Healf Source</h2>
-          <p className="max-w-xl text-lg leading-7 md:text-right">
+        <div className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+          <h2 className="text-4xl sm:text-5xl lg:shrink-0">The Healf Source</h2>
+          <p className="max-w-xl text-lg leading-7 lg:text-right">
             Journals are supplements for your MIND. Explore our range of
             expert-written articles to support your wellbeing journey.
           </p>
