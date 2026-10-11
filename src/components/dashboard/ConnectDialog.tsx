@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import DeviceArt from "./DeviceArt"
 import { scopes, type Device, type ScopeId } from "../../data/devices"
 
 type Props = {
@@ -33,6 +34,15 @@ export default function ConnectDialog({ device, onCancel, onAllow }: Props) {
         onClick={(e) => e.stopPropagation()}
         className="max-h-[92dvh] w-full max-w-lg overflow-y-auto rounded-t-[28px] bg-white p-6 sm:rounded-[28px] sm:p-8"
       >
+        <div className="mb-5 grid h-28 place-items-center rounded-2xl bg-canvas">
+          <DeviceArt
+            kind={device.art}
+            strap={device.strap}
+            accent={device.accent}
+            knurled={device.knurled}
+            className="h-24"
+          />
+        </div>
         <p className="eyebrow">Connect {device.name}</p>
         <h2
           id="connect-h"

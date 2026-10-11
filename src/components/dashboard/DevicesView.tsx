@@ -8,6 +8,7 @@ import {
 } from "../../data/devices"
 import type { Persona } from "../../hooks/usePersona"
 import ConnectDialog from "./ConnectDialog"
+import DeviceArt from "./DeviceArt"
 
 type Connecting = {
   device: Device
@@ -76,7 +77,7 @@ export default function DevicesView({ me }: { me: Persona }) {
           : `${connectedCount} connected.`}
       </p>
 
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+      <ul className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {devices.map((d) => {
           const state = me.devices[d.id]
           const isConnecting = connecting?.device.id === d.id
@@ -85,13 +86,16 @@ export default function DevicesView({ me }: { me: Persona }) {
               key={d.id}
               className="flex flex-col rounded-[24px] bg-white p-6"
             >
-              <div className="flex items-center gap-4">
-                <span
-                  className="grid size-12 shrink-0 place-items-center rounded-2xl bg-black text-lg text-white"
-                  aria-hidden="true"
-                >
-                  {d.name[0]}
-                </span>
+              <div className="grid aspect-[5/3] place-items-center rounded-2xl bg-canvas">
+                <DeviceArt
+                  kind={d.art}
+                  strap={d.strap}
+                  accent={d.accent}
+                  knurled={d.knurled}
+                  className="h-[88%]"
+                />
+              </div>
+              <div className="mt-5 flex items-center gap-3">
                 <div className="min-w-0 flex-1">
                   <h3 className="text-xl font-light">{d.name}</h3>
                   <p className="text-sm text-black/55">via {d.via}</p>
@@ -204,10 +208,10 @@ export default function DevicesView({ me }: { me: Persona }) {
       </ul>
 
       <p className="mt-6 max-w-2xl text-xs leading-5 text-black/50">
-        Prototype: connections are simulated and no data is read from any
-        device. A real version would link through Apple Health, Health Connect
-        or a provider such as Terra, with explicit consent and the right to
-        delete your data.
+        Device images are illustrations, not official product photos. Prototype:
+        connections are simulated and no data is read from any device. A real
+        version would link through Apple Health, Health Connect or a provider
+        such as Terra, with explicit consent and the right to delete your data.
       </p>
 
       {pending && (

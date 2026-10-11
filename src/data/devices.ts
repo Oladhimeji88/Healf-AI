@@ -6,11 +6,17 @@ export type Scope = {
   detail: string
 }
 
+import type { ArtKind } from "../components/dashboard/DeviceArt"
+
 export type Device = {
   id: string
   name: string
   via: string
   note?: string
+  art: ArtKind
+  strap: string
+  accent?: string
+  knurled?: boolean
 }
 
 export const scopes: Scope[] = [
@@ -34,16 +40,43 @@ export const devices: Device[] = [
     name: "Apple Watch",
     via: "Apple Health",
     note: "Needs the Healf iPhone app",
+    art: "square",
+    strap: "#3a3a3f",
   },
-  { id: "garmin", name: "Garmin", via: "Garmin Connect" },
-  { id: "oura", name: "Oura Ring", via: "Oura" },
-  { id: "whoop", name: "Whoop", via: "Whoop" },
-  { id: "fitbit", name: "Fitbit", via: "Fitbit" },
+  {
+    id: "garmin",
+    name: "Garmin",
+    via: "Garmin Connect",
+    art: "round",
+    strap: "#4d6b4a",
+    accent: "#6f9d6a",
+  },
+  { id: "oura", name: "Oura Ring", via: "Oura", art: "ring", strap: "#000" },
+  {
+    id: "whoop",
+    name: "Whoop",
+    via: "Whoop",
+    art: "band",
+    strap: "#26262b",
+    accent: "#d9825b",
+  },
+  {
+    id: "fitbit",
+    name: "Fitbit",
+    via: "Fitbit",
+    art: "tracker",
+    strap: "#4a6a9c",
+    accent: "#8c85c7",
+  },
   {
     id: "samsung",
     name: "Galaxy Watch",
     via: "Health Connect",
     note: "Needs the Healf Android app",
+    art: "round",
+    strap: "#8c85c7",
+    accent: "#d9825b",
+    knurled: true,
   },
 ]
 
