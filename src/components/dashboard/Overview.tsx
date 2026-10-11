@@ -347,8 +347,8 @@ export default function Overview({ me, plan, onNavigate }: Props) {
           You're not doing this alone
         </h2>
         <p className="mt-2 leading-7 text-black/70">
-          Our clinicians review every result. Ask a question, or tell us how
-          it's really going.
+          Healf practitioners and nutritionists are available for 1:1
+          consultations. Ask a question, or tell us how it's really going.
         </p>
         <button type="button" className="btn btn-light mt-4">
           Message your care team

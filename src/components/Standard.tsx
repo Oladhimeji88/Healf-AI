@@ -1,5 +1,5 @@
 import { ASSETS } from "../data/content"
-import { standardSteps } from "../data/platform"
+import { bannedIngredients, standardSteps } from "../data/platform"
 import Reveal from "./Reveal"
 
 export default function Standard() {
@@ -12,9 +12,8 @@ export default function Standard() {
             If it can't earn its place, it doesn't get one.
           </h2>
           <p className="text-xl leading-8 text-black/65 lg:self-end">
-            Every product, protocol and recommendation on the platform passes
-            the same three gates, so you never have to wonder what's worth your
-            time.
+            Every product on the platform passes the same three steps, so you
+            never have to wonder what's worth your time.
           </p>
         </div>
       </Reveal>
@@ -42,6 +41,24 @@ export default function Standard() {
           </Reveal>
         ))}
       </div>
+      <Reveal className="mt-4">
+        <div className="rounded-[24px] bg-canvas p-6 sm:p-8">
+          <h3 className="eyebrow">Never in anything we sell</h3>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {bannedIngredients.map((item) => (
+              <li
+                key={item}
+                className="rounded-full bg-white px-3 py-1.5 text-sm"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs text-black/50">
+            Some apply to ingestible products only.
+          </p>
+        </div>
+      </Reveal>
     </section>
   )
 }

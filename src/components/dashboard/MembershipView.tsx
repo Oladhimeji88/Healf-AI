@@ -1,15 +1,14 @@
 import { useState } from "react"
-import { formatPrice, type Product } from "../../data/content"
+import type { Product } from "../../data/content"
 import type { Persona } from "../../hooks/usePersona"
 import ProductRow from "../ProductRow"
 
 const CADENCES = [4, 8, 12]
-const PRICE = 29
 const BENEFITS = [
-  "A Healf Bloods re-test every 90 days, included",
-  "Your plan and score updated after every result",
-  "Messaging with Healf clinicians",
-  "Free delivery on every order",
+  "Two Healf Bloods Core tests a year, 37 biomarkers each",
+  "A 1:1 consultation after each test",
+  "Next-day delivery on Healf orders",
+  "Access to Healf events",
 ]
 
 const addWeeks = (weeks: number) => {
@@ -43,12 +42,12 @@ export default function MembershipView({
   if (!active) {
     return (
       <section className={card} aria-labelledby="m-h">
-        <p className="eyebrow">Healf Membership</p>
+        <p className="eyebrow">Healf Zone membership</p>
         <h2
           id="m-h"
           className="mt-3 max-w-xl text-3xl font-light tracking-tight sm:text-4xl"
         >
-          Wellbeing that keeps up with you.
+          Your results, tracked twice a year.
         </h2>
         <ul className="mt-6 max-w-xl divide-y divide-black/10 border-y border-black/10">
           {BENEFITS.map((b) => (
@@ -57,10 +56,10 @@ export default function MembershipView({
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-3xl font-light tabular-nums">
-          {formatPrice(PRICE)}{" "}
-          <span className="text-base text-black/55">
-            / month · cancel anytime
+        <p className="mt-6 text-lg">
+          Renews yearly. Price is shown at checkout.{" "}
+          <span className="text-black/55">
+            Limited to one membership per Healf account.
           </span>
         </p>
         <button
@@ -71,7 +70,7 @@ export default function MembershipView({
           Start membership
         </button>
         <p className="mt-3 text-xs text-black/50">
-          Illustrative pricing. Prototype: no payment is taken.
+          Based on healf.com/zone. Prototype: no payment is taken.
         </p>
       </section>
     )
@@ -164,9 +163,10 @@ export default function MembershipView({
           <h2 id="ret-h" className="eyebrow">
             Next Healf Bloods re-test
           </h2>
-          <p className="mt-3 text-2xl font-light">{addWeeks(13)}</p>
+          <p className="mt-3 text-2xl font-light">{addWeeks(26)}</p>
           <p className="mt-2 text-sm leading-6 text-black/60">
-            Included in your membership. We'll send the kit a week before.
+            Included in your membership: two Core tests a year, about six months
+            apart.
           </p>
         </section>
 
@@ -176,10 +176,11 @@ export default function MembershipView({
           </h2>
           <p className="mt-3 flex justify-between text-lg">
             <span>Membership</span>
-            <span className="tabular-nums">{formatPrice(PRICE)} / month</span>
+            <span>Renews yearly</span>
           </p>
           <p className="mt-2 text-xs text-black/50">
-            Illustrative pricing. Prototype: payments aren't connected.
+            Cancel before your annual cycle ends. Prototype: payments aren't
+            connected.
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <button

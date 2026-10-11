@@ -21,8 +21,8 @@ export default function Hero() {
             defined.
           </h1>
           <p className="mt-7 max-w-xl text-xl leading-8 text-white/80 sm:text-2xl sm:leading-9">
-            One platform that measures your body, interprets it with clinicians,
-            and guides you to what actually works, for you.
+            One platform that measures your body, explains what it means in
+            plain language, and guides you to what actually works, for you.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a href="#/start" className="btn bg-white text-black">
@@ -45,8 +45,8 @@ export default function Hero() {
               <dd className="mt-1 text-2xl font-light">15,200+</dd>
             </div>
             <div>
-              <dt className="text-white/60">Reviewed by</dt>
-              <dd className="mt-1 text-2xl font-light">Clinicians</dd>
+              <dt className="text-white/60">Biomarkers</dt>
+              <dd className="mt-1 text-2xl font-light">Up to 37</dd>
             </div>
           </dl>
         </div>

@@ -1,3 +1,5 @@
+import { catalogue } from "./catalogue"
+
 export const ASSETS = "/assets"
 
 export type Product = {
@@ -18,76 +20,24 @@ export const NAV_ITEMS = [
   { label: "Journal", href: "#journal" },
 ]
 
-export const bestSellers: Product[] = [
-  {
-    id: "gloss-oil",
-    image: "df5db.png",
-    brand: "MONDAY MUSE",
-    name: "The Gloss - Scalp & Hair Density Oil",
-    price: 45,
-    badges: ["Sale", "Free delivery"],
-  },
-  {
-    id: "ritual-prenatal",
-    image: "e5221.png",
-    brand: "RITUAL",
-    name: "Prenatal Multivitamin",
-    price: 30.99,
-    oldPrice: 39,
-    badges: ["Free delivery"],
-  },
-  {
-    id: "lmnt-variety",
-    image: "f2305.png",
-    brand: "LMNT",
-    name: "Recharge Electrolytes - Variety Pack",
-    price: 18.99,
-  },
-  {
-    id: "wild-collagen",
-    image: "124fd.png",
-    brand: "WILD NUTRITION",
-    name: "Collagen 500 Plus",
-    price: 34.49,
-    oldPrice: 36.5,
-    badges: ["Sale"],
-  },
-]
+const byId = (...ids: string[]) =>
+  ids
+    .map((id) => catalogue.find((p) => p.id === id))
+    .filter((p): p is Product => Boolean(p))
 
-export const certified: Product[] = [
-  {
-    id: "artah-core",
-    image: "df5db.png",
-    brand: "ARTAH",
-    name: "Core Metabollic+",
-    price: 32,
-    badges: ["Free delivery", "Free gifts"],
-  },
-  {
-    id: "pulse-ring",
-    image: "e5221.png",
-    brand: "PULSE",
-    name: "Pulse Ring - Silver",
-    price: 229,
-    badges: ["Free delivery"],
-  },
-  {
-    id: "ritual-prenatal-sale",
-    image: "f2305.png",
-    brand: "RITUAL",
-    name: "Prenatal Multivitamin",
-    price: 30.99,
-    oldPrice: 39,
-    badges: ["Sale"],
-  },
-  {
-    id: "hyperice-hyperboot",
-    image: "124fd.png",
-    brand: "HYPERICE",
-    name: "Nike x Hyperice Hyperboot",
-    price: 699.99,
-  },
-]
+export const bestSellers: Product[] = byId(
+  "monday-muse-the-gloss-scalp-hair-density-oil",
+  "ritual-prenatal-multivitamin",
+  "lmnt-recharge-electrolytes-variety-pack",
+  "wild-nutrition-collagen-500-plus",
+)
+
+export const certified: Product[] = byId(
+  "core-metabollic",
+  "pulse-pulse-ring-silver",
+  "nike-x-hyperice-hyperboot",
+  "8hours-sleep-recovery",
+)
 
 export const articles = [
   {
@@ -141,15 +91,15 @@ export const footerColumns = [
   { heading: "Pillars", links: ["Eat", "Move", "Mind", "Sleep"] },
   {
     heading: "Company",
-    links: ["Our Definition", "The Healf Standard", "Journal", "Careers"],
+    links: ["About Healf", "Curation Process", "The Healf Source", "Brands"],
   },
   {
     heading: "Support",
-    links: ["Contact Us", "Track Order", "Start a Return", "Privacy Policy"],
+    links: ["Track My Order", "FAQs", "Contact Us", "Privacy Policy"],
   },
 ]
 
-export const allProducts: Product[] = [...bestSellers, ...certified]
+export const allProducts: Product[] = catalogue
 
 const gbp = new Intl.NumberFormat("en-GB", {
   style: "currency",

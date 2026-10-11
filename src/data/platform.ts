@@ -104,7 +104,11 @@ export const goals: Goal[] = [
       sleep: "Fix your wake time first. Regularity beats duration.",
     },
     tests: ["Ferritin", "Vitamin B12", "HbA1c", "TSH"],
-    productIds: ["artah-core", "lmnt-variety"],
+    productIds: [
+      "core-metabollic",
+      "lmnt-recharge-electrolytes-variety-pack",
+      "ag1-pouch",
+    ],
   },
   {
     id: "sleep",
@@ -119,7 +123,11 @@ export const goals: Goal[] = [
       sleep: "Cool room (16–18°C) and a consistent lights-out window.",
     },
     tests: ["Magnesium", "Cortisol rhythm", "Vitamin D", "Ferritin"],
-    productIds: ["pulse-ring", "artah-core"],
+    productIds: [
+      "8hours-sleep-recovery",
+      "promix-nutrition-relax-magnesium-complex",
+      "pulse-pulse-ring-silver",
+    ],
   },
   {
     id: "focus",
@@ -134,7 +142,11 @@ export const goals: Goal[] = [
       sleep: "Protect the last 90 minutes of sleep. REM drives clarity.",
     },
     tests: ["Omega-3 Index", "Vitamin B12", "HbA1c", "Homocysteine"],
-    productIds: ["lmnt-variety", "artah-core"],
+    productIds: [
+      "mindbyte-high-dha-omega-3-for-the-brain",
+      "lmnt-recharge-electrolytes-variety-pack",
+      "core-metabollic",
+    ],
   },
   {
     id: "ageing",
@@ -149,7 +161,11 @@ export const goals: Goal[] = [
       sleep: "Seven to eight hours with a regular schedule.",
     },
     tests: ["hs-CRP", "Omega-3 Index", "ApoB", "HbA1c"],
-    productIds: ["wild-collagen", "gloss-oil", "pulse-ring"],
+    productIds: [
+      "wild-nutrition-collagen-500-plus",
+      "omre-quercetin-fisetin",
+      "metagenetics-omegagenics-high-strength",
+    ],
   },
   {
     id: "recovery",
@@ -164,7 +180,11 @@ export const goals: Goal[] = [
       sleep: "Treat sleep as the primary recovery tool.",
     },
     tests: ["Ferritin", "Vitamin D", "hs-CRP", "Magnesium"],
-    productIds: ["hyperice-hyperboot", "lmnt-variety", "wild-collagen"],
+    productIds: [
+      "nike-x-hyperice-hyperboot",
+      "promix-nutrition-non-gmo-creatine",
+      "lmnt-recharge-electrolytes-variety-pack",
+    ],
   },
 ]
 
@@ -244,7 +264,7 @@ export const loopSteps = [
   },
   {
     title: "Understand",
-    text: "Healf Intelligence, reviewed by clinicians, turns raw numbers into what they mean for you.",
+    text: "Each result is shown as low, optimal or high and explained in plain language, with 1:1 consultations when you want to talk it through.",
   },
   {
     title: "Act",
@@ -261,18 +281,52 @@ export const standardSteps = [
     image: "5b27f.png",
     number: "01",
     title: "Discovery",
-    text: "We source from labs, clinicians and founders worldwide.",
+    text: "A global network of health professionals and AI-powered trend analysis helps us find the leading supplements, tools and tech.",
   },
   {
     image: "a01c3.png",
     number: "02",
     title: "Expert validation",
-    text: "Ingredients, dosing and claims are assessed against the evidence.",
+    text: "A panel of dietitians, personal trainers, psychologists and sleep experts examines quality, efficacy and ingredient formulations.",
   },
   {
     image: "baa59.png",
     number: "03",
     title: "Community testing",
-    text: "Real people use it for weeks and report back before it earns a place.",
+    text: "Our community tries products and has its say, which becomes the Healf Score on each product.",
+  },
+]
+
+// Ingredients Healf says it never uses (healf.com/pages/curation). Some apply to ingestibles only.
+export const bannedIngredients = [
+  "Alum or aluminium salts",
+  "Artificial colours",
+  "Artificial flavours",
+  "Aspartame",
+  "BHT",
+  "BHA",
+  "MSG",
+  "Parabens",
+  "Phthalates",
+  "Polysorbate 80",
+  "Processed flour",
+  "Saccharin",
+  "Sodium nitrate",
+  "Vanillin",
+]
+
+export const bloodsSteps = [
+  {
+    title: "Test at home",
+    text: "Collect a small sample on your arm with a Tasso device in under 30 minutes. No clinic visit.",
+  },
+  { title: "Post it back", text: "Your sample reaches the lab the next day." },
+  {
+    title: "Get your results",
+    text: "Usually within 72 hours of the lab receiving it, in your personal dashboard.",
+  },
+  {
+    title: "Act on them",
+    text: "See what each biomarker means, get recommendations, and book a 1:1 consultation.",
   },
 ]

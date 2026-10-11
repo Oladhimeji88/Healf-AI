@@ -41,6 +41,9 @@ export default function App() {
       >
         Skip to content
       </a>
+      <div className="bg-black px-4 py-2 text-center text-xs text-white">
+        Free UK delivery over £50 · 365-day free returns
+      </div>
       <Header planCount={plan.length} onOpenPlan={() => setDrawerOpen(true)} />
       <p role="status" className="sr-only">
         {announcement}

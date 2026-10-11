@@ -25,7 +25,8 @@ export default function Loop() {
           ))}
         </ol>
         <p className="mt-6 text-sm text-white/50">
-          ↻ Then repeat. Re-scoring every 90 days keeps your plan current.
+          ↻ Then repeat. Healf recommends re-testing every six months to keep
+          your plan current.
         </p>
       </div>
     </section>

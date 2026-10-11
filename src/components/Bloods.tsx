@@ -1,5 +1,5 @@
 import { ASSETS } from "../data/content"
-import { biomarkers, type Biomarker } from "../data/platform"
+import { bloodsSteps, biomarkers, type Biomarker } from "../data/platform"
 import Reveal from "./Reveal"
 
 export function status(b: Biomarker) {
@@ -64,8 +64,8 @@ export default function Bloods() {
               Your body's data, in plain language.
             </h2>
             <p className="mt-3 max-w-md text-lg leading-7 text-white/85">
-              A simple at-home test. Clinician-reviewed results that feed
-              directly into your Healf Score and plan.
+              A simple at-home test. Results arrive in your personal dashboard,
+              explained in plain language.
             </p>
             <a href="#/start" className="btn btn-light mt-6">
               Start testing
@@ -91,6 +91,74 @@ export default function Bloods() {
           <p className="mt-4 text-xs leading-5 text-black/50">
             Example values for demonstration only. Not medical advice. Discuss
             any results with a qualified clinician.
+          </p>
+        </Reveal>
+      </div>
+      <div className="page-section pt-0 pb-20 lg:pb-28">
+        <Reveal>
+          <p className="eyebrow">How Healf Bloods works</p>
+          <div className="mt-6 grid gap-4 lg:grid-cols-12">
+            <div className="rounded-[28px] bg-white p-6 sm:p-10 lg:col-span-5">
+              <ol className="divide-y divide-black/10">
+                {bloodsSteps.map((step, i) => (
+                  <li
+                    key={step.title}
+                    className="grid grid-cols-[32px_1fr] gap-3 py-5 first:pt-0"
+                  >
+                    <span className="text-sm tabular-nums text-black/40">
+                      0{i + 1}
+                    </span>
+                    <span>
+                      <span className="block text-xl font-light">
+                        {step.title}
+                      </span>
+                      <span className="mt-1 block leading-6 text-black/65">
+                        {step.text}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+              <figure className="relative min-h-[320px] overflow-hidden rounded-[28px]">
+                <img
+                  src={`${ASSETS}/healf/zone/unboxing.jpg`}
+                  alt="Opening a Healf Bloods test kit on a table"
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </figure>
+              <figure className="relative min-h-[320px] overflow-hidden rounded-[28px]">
+                <img
+                  src={`${ASSETS}/healf/zone/consultation.jpg`}
+                  alt="A member on a video consultation with a Healf practitioner"
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </figure>
+            </div>
+          </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-[24px] bg-white p-6 sm:p-8">
+              <h3 className="text-2xl font-light">Lite · 23 biomarkers</h3>
+              <p className="mt-2 leading-6 text-black/65">
+                Heart, cholesterol, vitamins and liver. From £79.
+              </p>
+            </div>
+            <div className="rounded-[24px] bg-white p-6 sm:p-8">
+              <h3 className="text-2xl font-light">
+                Core · 37 biomarkers · £99
+              </h3>
+              <p className="mt-2 leading-6 text-black/65">
+                Adds hormones, recovery markers and minerals.
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-xs leading-5 text-black/50">
+            Available in the UK only. Not suitable if you are pregnant or under
+            18. Healf recommends testing every six months. Details from
+            healf.com/zone.
           </p>
         </Reveal>
       </div>
