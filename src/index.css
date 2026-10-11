@@ -49,6 +49,7 @@ a {
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 8px;
+  scroll-snap-type: x proximity;
   scrollbar-width: none;
 }
 
@@ -82,5 +83,22 @@ a {
   .section-title {
     font-size: 32px;
     line-height: 36px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }
