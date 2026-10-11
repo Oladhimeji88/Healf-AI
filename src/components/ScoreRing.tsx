@@ -13,10 +13,13 @@ const STROKE = 14
 export default function ScoreRing({
   scores,
   caption,
+  onDark = false,
 }: {
   scores: Scores
   caption: string
+  onDark?: boolean
 }) {
+  const muted = onDark ? "text-white/60" : "text-black/50"
   const [armed, setArmed] = useState(false)
   useEffect(() => {
     const id = requestAnimationFrame(() => setArmed(true))
@@ -48,7 +51,7 @@ export default function ScoreRing({
                   cy="160"
                   r={r}
                   fill="none"
-                  stroke="#e9e7e0"
+                  stroke={onDark ? "rgb(255 255 255 / 0.16)" : "#e9e7e0"}
                   strokeWidth={STROKE}
                 />
                 <circle
@@ -74,7 +77,9 @@ export default function ScoreRing({
           <div className="text-5xl font-light leading-none tabular-nums">
             {shown}
           </div>
-          <div className="mt-1.5 text-[10px] uppercase tracking-[0.16em] text-black/50">
+          <div
+            className={`mt-1.5 text-[10px] uppercase tracking-[0.16em] ${muted}`}
+          >
             Healf Score
           </div>
         </div>
@@ -83,7 +88,9 @@ export default function ScoreRing({
         {pillars.map((p) => (
           <li
             key={p.id}
-            className="flex items-center justify-between gap-3 border-b border-black/10 pb-2"
+            className={`flex items-center justify-between gap-3 border-b pb-2 ${
+              onDark ? "border-white/15" : "border-black/10"
+            }`}
           >
             <span className="flex items-center gap-2">
               <span
@@ -96,7 +103,7 @@ export default function ScoreRing({
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs text-black/50">{caption}</p>
+      <p className={`mt-3 text-xs ${muted}`}>{caption}</p>
     </div>
   )
 }
