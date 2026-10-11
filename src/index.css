@@ -39,17 +39,6 @@ a {
   cursor: pointer;
 }
 
-.page-section {
-  width: min(100%, 1440px);
-  margin-inline: auto;
-  padding: 56px 16px;
-}
-
-.section-title {
-  font-size: 36px;
-  line-height: 40px;
-}
-
 .product-rail {
   display: grid;
   grid-auto-flow: column;
@@ -83,17 +72,6 @@ a {
   }
 }
 
-@media (max-width: 640px) {
-  .page-section {
-    padding-block: 44px;
-  }
-
-  .section-title {
-    font-size: 32px;
-    line-height: 36px;
-  }
-}
-
 :focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
@@ -101,6 +79,35 @@ a {
 
 html {
   scroll-padding-top: 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+.page-section {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding: 56px 16px;
+}
+
+.section-title {
+  font-size: 36px;
+  line-height: 40px;
 }
 
 .eyebrow {
@@ -148,19 +155,14 @@ html {
   transform: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
+@media (max-width: 640px) {
+  .page-section {
+    padding-block: 44px;
   }
 
-  html {
-    scroll-behavior: auto;
+  .section-title {
+    font-size: 32px;
+    line-height: 36px;
   }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-  }
+}
 }

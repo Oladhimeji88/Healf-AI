@@ -44,12 +44,12 @@ export default function Personalise({ plan, onToggle }: Props) {
         ))}
       </div>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-[380px_1fr]">
+      <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[380px_1fr]">
         <div className="rounded-[28px] bg-canvas p-6 sm:p-8">
           <ScoreRing scores={goal.scores} caption="Sample starting point · illustrative data" />
         </div>
 
-        <div className="flex flex-col gap-6 rounded-[28px] border border-black/10 p-6 sm:p-8">
+        <div className="flex min-w-0 flex-col gap-6 rounded-[28px] border border-black/10 p-6 sm:p-8">
           <p className="text-xl font-light leading-8 sm:text-2xl sm:leading-9" aria-live="polite">{goal.insight}</p>
 
           <div>
@@ -78,11 +78,11 @@ export default function Personalise({ plan, onToggle }: Props) {
 
           <div>
             <h3 className="eyebrow">Matched to this goal</h3>
-            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {matches.map((p) => {
                 const added = plan.some((x) => x.id === p.id)
                 return (
-                  <li key={p.id} className="flex items-center gap-3 rounded-2xl border border-black/10 p-3">
+                  <li key={p.id} className="flex min-w-0 items-center gap-3 rounded-2xl border border-black/10 p-3">
                     <img src={`${ASSETS}/${p.image}`} alt="" className="size-16 shrink-0 rounded-xl bg-canvas object-cover" />
                     <div className="min-w-0 flex-1">
                       <p className="text-[11px] font-bold tracking-wide text-black/50">{p.brand}</p>

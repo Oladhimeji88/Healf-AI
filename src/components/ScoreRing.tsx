@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import useCountUp from "../hooks/useCountUp"
 import { PILLAR_COLORS, PILLAR_ORDER, pillars, type Scores } from "../data/platform"
 
-const RADII = [140, 112, 84, 56]
-const STROKE = 16
+const RADII = [142, 120, 98, 76]
+const STROKE = 14
 
 export default function ScoreRing({ scores, caption }: { scores: Scores; caption: string }) {
   const [armed, setArmed] = useState(false)
@@ -48,8 +48,8 @@ export default function ScoreRing({ scores, caption }: { scores: Scores; caption
           })}
         </svg>
         <div className="absolute inset-0 grid place-content-center text-center">
-          <div className="text-6xl font-light leading-none tabular-nums">{shown}</div>
-          <div className="mt-2 text-xs uppercase tracking-[0.18em] text-black/50">Healf Score</div>
+          <div className="text-5xl font-light leading-none tabular-nums">{shown}</div>
+          <div className="mt-1.5 text-[10px] uppercase tracking-[0.16em] text-black/50">Healf Score</div>
         </div>
       </div>
       <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm">
