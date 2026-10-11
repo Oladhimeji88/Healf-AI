@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: "Avenir:Roman", "Avenir LT Pro:Regular", Avenir, "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+  color: #000;
+  background: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+a,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+.page-section {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding: 56px 16px;
+}
+
+.section-title {
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.product-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 1fr);
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.product-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail-arrow {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgb(0 0 0 / 20%);
+  border-radius: 999px;
+  font-size: 18px;
+}
+
+@media (min-width: 1024px) {
+  .product-rail {
+    grid-auto-flow: initial;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-section {
+    padding-block: 44px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}
