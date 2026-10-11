@@ -1,25 +1,46 @@
 import { useState } from "react"
 import { ASSETS, type Product } from "../../data/content"
 import BiomarkersView from "./BiomarkersView"
+import type { Persona } from "../../hooks/usePersona"
 import Overview from "./Overview"
+import MembershipView from "./MembershipView"
 import PlanView from "./PlanView"
+import type { DashboardView } from "./types"
 
-type View = "overview" | "plan" | "biomarkers"
+type NavItem = {
+  id: DashboardView
+  label: string
+}
 
-const views: Array<{ id: View label: string }> = [
+const views: NavItem[] = [
   { id: "overview", label: "Overview" },
   { id: "plan", label: "My plan" },
+  { id: "membership", label: "Membership" },
   { id: "biomarkers", label: "Biomarkers" },
 ]
 
-export default function Dashboard({
-  plan,
-  onRemove,
-}: {
+type DashboardProps = {
+  me: Persona
   plan: Product[]
   onRemove: (p: Product) => void
-}) {
-  const [view, setView] = useState<View>("overview")
+}
+
+export default function Dashboard({ me, plan, onRemove }: DashboardProps) {
+  const [view, setView] = useState<DashboardView>("overview")
+  const hour = new Date().getHours()
+  const greeting =
+    hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening"
+  const date = new Date().toLocaleDateString("en-GB", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  })
+  const heading =
+    view === "overview"
+      ? me.onboarded
+        ? `${greeting}${me.name ? `, ${me.name}` : ""}.`
+        : "Welcome to Healf."
+      : views.find((v) => v.id === view)!.label
 
   return (
     <div className="min-h-dvh bg-canvas text-black">
@@ -72,9 +93,11 @@ export default function Dashboard({
         <main id="main" className="min-w-0">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="eyebrow">Dashboard</p>
+              <p className="eyebrow">
+                {view === "overview" ? date : "Dashboard"}
+              </p>
               <h1 className="mt-2 text-4xl font-light tracking-tight sm:text-5xl">
-                {views.find((v) => v.id === view)!.label}
+                {heading}
               </h1>
             </div>
             <button type="button" className="btn btn-light">
@@ -82,8 +105,13 @@ export default function Dashboard({
             </button>
           </div>
 
-          {view === "overview" && <Overview plan={plan} onNavigate={setView} />}
-          {view === "plan" && <PlanView plan={plan} onRemove={onRemove} />}
+          {view === "overview" && (
+            <Overview me={me} plan={plan} onNavigate={setView} />
+          )}
+          {view === "plan" && (
+            <PlanView plan={plan} onRemove={onRemove} onNavigate={setView} />
+          )}
+          {view === "membership" && <MembershipView me={me} plan={plan} />}
           {view === "biomarkers" && <BiomarkersView />}
           <p className="mt-6 text-xs text-black/50">
             Sample data for demonstration. Healf is not a substitute for

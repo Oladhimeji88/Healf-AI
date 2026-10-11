@@ -1,13 +1,14 @@
 import { formatPrice, type Product } from "../../data/content"
 import ProductRow from "../ProductRow"
+import type { DashboardView } from "./types"
 
-export default function PlanView({
-  plan,
-  onRemove,
-}: {
+type Props = {
   plan: Product[]
   onRemove: (p: Product) => void
-}) {
+  onNavigate: (view: DashboardView) => void
+}
+
+export default function PlanView({ plan, onRemove, onNavigate }: Props) {
   const total = plan.reduce((sum, p) => sum + p.price, 0)
 
   if (plan.length === 0) {
@@ -49,6 +50,19 @@ export default function PlanView({
       <div className="mt-2 flex items-center justify-between border-t border-black/10 pt-5 text-lg">
         <span>Subtotal</span>
         <span className="tabular-nums">{formatPrice(total)}</span>
+      </div>
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-canvas p-4 text-sm">
+        <span>
+          Never run out. Get this plan delivered every 4 to 12 weeks with
+          membership.
+        </span>
+        <button
+          type="button"
+          onClick={() => onNavigate("membership")}
+          className="underline"
+        >
+          Make it a membership
+        </button>
       </div>
       <p className="mt-3 text-xs text-black/50">
         Prototype: checkout isn't connected.

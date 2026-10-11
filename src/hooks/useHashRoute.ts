@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export type Route = "home" | "dashboard"
+export type Route = "home" | "dashboard" | "start"
 
 const read = (): Route =>
   window.location.hash.startsWith("#/dashboard") ? "dashboard" : "home"

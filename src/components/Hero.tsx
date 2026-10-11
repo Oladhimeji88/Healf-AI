@@ -28,7 +28,7 @@ export default function Hero() {
             and guides you to what actually works, for you.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a href="#plan" className="btn bg-white text-black">
+            <a href="#/start" className="btn bg-white text-black">
               Build my baseline
             </a>
             <a

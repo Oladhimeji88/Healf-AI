@@ -67,7 +67,7 @@ export default function Bloods() {
               A simple at-home test. Clinician-reviewed results that feed
               directly into your Healf Score and plan.
             </p>
-            <a href="#plan" className="btn btn-light mt-6">
+            <a href="#/start" className="btn btn-light mt-6">
               Start testing
             </a>
           </div>

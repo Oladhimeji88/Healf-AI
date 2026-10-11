@@ -15,16 +15,23 @@ import ProductRail from "./components/ProductRail"
 import Standard from "./components/Standard"
 import { certified } from "./data/content"
 import Dashboard from "./components/dashboard/Dashboard"
+import Quiz from "./components/quiz/Quiz"
 import useHashRoute from "./hooks/useHashRoute"
+import usePersona from "./hooks/usePersona"
 import usePlan from "./hooks/usePlan"
 
 export default function App() {
   const { plan, has, add, toggle, announcement } = usePlan()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const route = useHashRoute()
+  const me = usePersona()
   const closeDrawer = useCallback(() => setDrawerOpen(false), [])
 
-  if (route === "dashboard") return <Dashboard plan={plan} onRemove={toggle} />
+  // Returning members skip the quiz and go straight to their dashboard.
+  if (route === "dashboard" || (route === "start" && me.onboarded)) {
+    return <Dashboard me={me} plan={plan} onRemove={toggle} />
+  }
+  if (route === "start") return <Quiz me={me} />
 
   return (
     <div className="min-h-dvh bg-white text-black">

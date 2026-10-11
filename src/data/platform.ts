@@ -177,6 +177,7 @@ export type Biomarker = {
   min: number
   max: number
   optimal: [number, number]
+  nextStep?: string
 }
 
 export const biomarkers: Biomarker[] = [
@@ -187,6 +188,8 @@ export const biomarkers: Biomarker[] = [
     min: 0,
     max: 150,
     optimal: [75, 125],
+    nextStep:
+      "Re-test in about 12 weeks. Many people in the UK need support from October to March, so ask a clinician what dose suits you.",
   },
   {
     name: "Ferritin",
@@ -203,8 +206,19 @@ export const biomarkers: Biomarker[] = [
     min: 0,
     max: 14,
     optimal: [8, 12],
+    nextStep:
+      "Oily fish twice a week is a good start. Talk to a clinician about supplementing, then re-test in around four months.",
   },
-  { name: "hs-CRP", value: 2.4, unit: "mg/L", min: 0, max: 5, optimal: [0, 1] },
+  {
+    name: "hs-CRP",
+    value: 2.4,
+    unit: "mg/L",
+    min: 0,
+    max: 5,
+    optimal: [0, 1],
+    nextStep:
+      "One high reading can reflect a recent cold or a hard workout. Re-test in 2 to 4 weeks before reading too much into it.",
+  },
   {
     name: "HbA1c",
     value: 34,
