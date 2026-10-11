@@ -1,10 +1,9 @@
 import { ASSETS, articles, moreArticles } from "../data/content"
-import PillButton from "./PillButton"
 
 export default function Journal() {
   return (
     <>
-      <section className="page-section py-16 lg:py-20">
+      <section id="journal" className="page-section py-16 lg:py-20">
         <div className="mb-10 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
           <h2 className="text-4xl sm:text-5xl lg:shrink-0">The Healf Source</h2>
           <p className="max-w-xl text-lg leading-7 lg:text-right">
@@ -15,7 +14,7 @@ export default function Journal() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {articles.map((article) => (
             <article key={article.title}>
-              <div className="aspect-[2/3] overflow-hidden rounded-2xl bg-neutral-100">
+              <div className="aspect-[2/3] overflow-hidden rounded-2xl bg-canvas">
                 <img
                   src={`${ASSETS}/${article.image}`}
                   alt=""
@@ -35,7 +34,9 @@ export default function Journal() {
           ))}
         </div>
         <div className="mt-10">
-          <PillButton dark>Read The Source</PillButton>
+          <a href="#" className="btn btn-dark">
+            Read The Source
+          </a>
         </div>
       </section>
 

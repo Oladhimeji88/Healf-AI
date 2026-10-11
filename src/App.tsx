@@ -13,21 +13,12 @@ import Personalise from "./components/Personalise"
 import PlanDrawer from "./components/PlanDrawer"
 import ProductRail from "./components/ProductRail"
 import Standard from "./components/Standard"
-import { certified, type Product } from "./data/content"
+import { certified } from "./data/content"
+import usePlan from "./hooks/usePlan"
 
 export default function App() {
-  const [plan, setPlan] = useState<Product[]>([])
+  const { plan, has, add, toggle, announcement } = usePlan()
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [announcement, setAnnouncement] = useState("")
-
-  const toggle = (product: Product) => {
-    const has = plan.some((p) => p.id === product.id)
-    setPlan(has ? plan.filter((p) => p.id !== product.id) : [...plan, product])
-    setAnnouncement(`${product.name} ${has ? "removed from" : "added to"} plan`)
-  }
-  const add = (product: Product) => {
-    if (!plan.some((p) => p.id === product.id)) toggle(product)
-  }
   const closeDrawer = useCallback(() => setDrawerOpen(false), [])
 
   return (
@@ -39,33 +30,37 @@ export default function App() {
         Skip to content
       </a>
       <Header planCount={plan.length} onOpenPlan={() => setDrawerOpen(true)} />
-      <p role="status" className="sr-only">{announcement}</p>
+      <p role="status" className="sr-only">
+        {announcement}
+      </p>
 
       <main id="main">
         <Hero />
         <Manifesto />
         <Framework />
         <Loop />
-        <Personalise plan={plan} onToggle={toggle} />
+        <Personalise has={has} onToggle={toggle} />
         <Bloods />
         <Standard />
-        <div id="marketplace">
-          <ProductRail
-            title="Certified by Healf"
-            subtitle="The Marketplace: every product has passed The Healf Standard."
-            products={certified}
-            onAdd={add}
-          />
-        </div>
-        <div id="journal">
-          <Journal />
-        </div>
+        <ProductRail
+          id="marketplace"
+          title="Certified by Healf"
+          subtitle="The Marketplace: every product has passed The Healf Standard."
+          products={certified}
+          onAdd={add}
+        />
+        <Journal />
         <HealfPromise />
         <FinalCta />
       </main>
 
       <Footer />
-      <PlanDrawer open={drawerOpen} onClose={closeDrawer} plan={plan} onRemove={toggle} />
+      <PlanDrawer
+        open={drawerOpen}
+        onClose={closeDrawer}
+        plan={plan}
+        onRemove={toggle}
+      />
     </div>
   )
 }

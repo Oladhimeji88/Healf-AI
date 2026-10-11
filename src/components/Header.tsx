@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react"
 import { ASSETS, NAV_ITEMS } from "../data/content"
 
-export default function Header({ planCount, onOpenPlan }: { planCount: number; onOpenPlan: () => void }) {
+export default function Header({
+  planCount,
+  onOpenPlan,
+}: {
+  planCount: number
+  onOpenPlan: () => void
+}) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -12,7 +18,7 @@ export default function Header({ planCount, onOpenPlan }: { planCount: number; o
   }, [menuOpen])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 px-4 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-white px-4">
       <div className="relative mx-auto flex h-16 max-w-[1440px] items-center justify-between">
         <div className="flex items-center">
           <button
@@ -50,17 +56,25 @@ export default function Header({ planCount, onOpenPlan }: { planCount: number; o
           <button
             type="button"
             onClick={onOpenPlan}
-            aria-label={`Your plan, ${planCount} ${planCount === 1 ? "item" : "items"}`}
+            aria-label={`Your plan, ${planCount} ${
+              planCount === 1 ? "item" : "items"
+            }`}
             className="flex h-10 items-center gap-2 rounded-full border border-black/20 px-4 text-sm transition hover:border-black"
           >
             Plan
             {planCount > 0 && (
-              <span aria-hidden="true" className="grid size-5 place-items-center rounded-full bg-black text-[11px] text-white">
+              <span
+                aria-hidden="true"
+                className="grid size-5 place-items-center rounded-full bg-black text-[11px] text-white"
+              >
                 {planCount}
               </span>
             )}
           </button>
-          <a href="#plan" className="btn btn-dark hidden !py-2.5 sm:inline-flex">
+          <a
+            href="#plan"
+            className="btn btn-dark hidden !py-2.5 sm:inline-flex"
+          >
             Get started
           </a>
         </div>
@@ -72,7 +86,11 @@ export default function Header({ planCount, onOpenPlan }: { planCount: number; o
           className="grid gap-3 border-t border-black/10 py-5 text-xl lg:hidden"
         >
           {NAV_ITEMS.map((item) => (
-            <a href={item.href} onClick={() => setMenuOpen(false)} key={item.label}>
+            <a
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              key={item.label}
+            >
               {item.label}
             </a>
           ))}

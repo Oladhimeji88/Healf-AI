@@ -42,7 +42,11 @@ export default function HealfPromise() {
               className="rounded-2xl bg-white/90 p-4 text-black"
               key={review.title}
             >
-              <div className="text-[#00b67a]" role="img" aria-label="5 out of 5 stars">
+              <div
+                className="text-[#00b67a]"
+                role="img"
+                aria-label="5 out of 5 stars"
+              >
                 ★★★★★
               </div>
               <h3 className="mt-2 text-lg font-semibold">{review.title}</h3>

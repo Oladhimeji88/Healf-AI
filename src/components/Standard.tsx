@@ -22,12 +22,21 @@ export default function Standard() {
         {standardSteps.map((s, i) => (
           <Reveal key={s.title} delay={i * 90}>
             <article className="relative min-h-[480px] overflow-hidden rounded-[24px] sm:min-h-[560px]">
-              <img src={`${ASSETS}/${s.image}`} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+              <img
+                src={`${ASSETS}/${s.image}`}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 size-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              <span className="absolute left-5 top-4 text-xl text-white">{s.number}</span>
+              <span className="absolute left-5 top-4 text-xl text-white">
+                {s.number}
+              </span>
               <div className="absolute bottom-0 p-5 text-white">
                 <h3 className="text-3xl font-light">{s.title}</h3>
-                <p className="mt-2 max-w-xs leading-6 text-white/85">{s.text}</p>
+                <p className="mt-2 max-w-xs leading-6 text-white/85">
+                  {s.text}
+                </p>
               </div>
             </article>
           </Reveal>

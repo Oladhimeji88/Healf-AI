@@ -1,17 +1,25 @@
-import { useState } from "react"
-import { ASSETS, allProducts, formatPrice, type Product } from "../data/content"
+import { useMemo, useState } from "react"
+import { allProducts, type Product } from "../data/content"
 import { PILLAR_COLORS, PILLAR_ORDER, goals } from "../data/platform"
+import ProductRow from "./ProductRow"
 import Reveal from "./Reveal"
 import ScoreRing from "./ScoreRing"
 
-type Props = { plan: Product[]; onToggle: (product: Product) => void }
+type Props = {
+  has: (id: string) => boolean
+  onToggle: (product: Product) => void
+}
 
-export default function Personalise({ plan, onToggle }: Props) {
+export default function Personalise({ has, onToggle }: Props) {
   const [goalId, setGoalId] = useState(goals[0].id)
   const goal = goals.find((g) => g.id === goalId)!
-  const matches = goal.productIds
-    .map((id) => allProducts.find((p) => p.id === id))
-    .filter((p): p is Product => Boolean(p))
+  const matches = useMemo(
+    () =>
+      goal.productIds
+        .map((id) => allProducts.find((p) => p.id === id))
+        .filter((p): p is Product => Boolean(p)),
+    [goal],
+  )
 
   return (
     <section id="plan" className="page-section py-20 lg:py-28">
@@ -27,7 +35,11 @@ export default function Personalise({ plan, onToggle }: Props) {
         </p>
       </Reveal>
 
-      <div role="radiogroup" aria-label="Your goal" className="mt-10 flex flex-wrap gap-2">
+      <div
+        role="radiogroup"
+        aria-label="Your goal"
+        className="mt-10 flex flex-wrap gap-2"
+      >
         {goals.map((g) => (
           <button
             key={g.id}
@@ -36,7 +48,9 @@ export default function Personalise({ plan, onToggle }: Props) {
             aria-checked={g.id === goalId}
             onClick={() => setGoalId(g.id)}
             className={`rounded-full border px-5 py-2.5 text-sm transition ${
-              g.id === goalId ? "border-black bg-black text-white" : "border-black/20 hover:border-black"
+              g.id === goalId
+                ? "border-black bg-black text-white"
+                : "border-black/20 hover:border-black"
             }`}
           >
             {g.label}
@@ -46,22 +60,38 @@ export default function Personalise({ plan, onToggle }: Props) {
 
       <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[380px_1fr]">
         <div className="rounded-[28px] bg-canvas p-6 sm:p-8">
-          <ScoreRing scores={goal.scores} caption="Sample starting point · illustrative data" />
+          <ScoreRing
+            scores={goal.scores}
+            caption="Sample starting point · illustrative data"
+          />
         </div>
 
         <div className="flex min-w-0 flex-col gap-6 rounded-[28px] border border-black/10 p-6 sm:p-8">
-          <p className="text-xl font-light leading-8 sm:text-2xl sm:leading-9" aria-live="polite">{goal.insight}</p>
+          <p
+            className="text-xl font-light leading-8 sm:text-2xl sm:leading-9"
+            aria-live="polite"
+          >
+            {goal.insight}
+          </p>
 
           <div>
             <h3 className="eyebrow">Your protocol</h3>
             <ul className="mt-3 divide-y divide-black/10 border-y border-black/10">
               {PILLAR_ORDER.map((id) => (
-                <li key={id} className="grid grid-cols-[72px_1fr] items-baseline gap-4 py-3">
+                <li
+                  key={id}
+                  className="grid grid-cols-[72px_1fr] items-baseline gap-4 py-3"
+                >
                   <span className="flex items-center gap-2 text-xs font-semibold tracking-wide">
-                    <span className="size-2 rounded-full" style={{ background: PILLAR_COLORS[id] }} />
+                    <span
+                      className="size-2 rounded-full"
+                      style={{ background: PILLAR_COLORS[id] }}
+                    />
                     {id.toUpperCase()}
                   </span>
-                  <span className="text-base leading-6">{goal.protocol[id]}</span>
+                  <span className="text-base leading-6">
+                    {goal.protocol[id]}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -71,7 +101,12 @@ export default function Personalise({ plan, onToggle }: Props) {
             <h3 className="eyebrow">Tests we'd start with</h3>
             <ul className="mt-3 flex flex-wrap gap-2">
               {goal.tests.map((t) => (
-                <li key={t} className="rounded-full bg-canvas px-3 py-1.5 text-sm">{t}</li>
+                <li
+                  key={t}
+                  className="rounded-full bg-canvas px-3 py-1.5 text-sm"
+                >
+                  {t}
+                </li>
               ))}
             </ul>
           </div>
@@ -80,26 +115,32 @@ export default function Personalise({ plan, onToggle }: Props) {
             <h3 className="eyebrow">Matched to this goal</h3>
             <ul className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {matches.map((p) => {
-                const added = plan.some((x) => x.id === p.id)
+                const added = has(p.id)
                 return (
-                  <li key={p.id} className="flex min-w-0 items-center gap-3 rounded-2xl border border-black/10 p-3">
-                    <img src={`${ASSETS}/${p.image}`} alt="" className="size-16 shrink-0 rounded-xl bg-canvas object-cover" />
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[11px] font-bold tracking-wide text-black/50">{p.brand}</p>
-                      <p className="truncate text-sm">{p.name}</p>
-                      <p className="text-sm text-black/60">{formatPrice(p.price)}</p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => onToggle(p)}
-                      aria-pressed={added}
-                      aria-label={`${added ? "Remove" : "Add"} ${p.name} ${added ? "from" : "to"} plan`}
-                      className={`shrink-0 rounded-full px-3.5 py-2 text-xs transition ${
-                        added ? "bg-black text-white" : "border border-black/20 hover:border-black"
-                      }`}
-                    >
-                      {added ? "Added ✓" : "Add"}
-                    </button>
+                  <li
+                    key={p.id}
+                    className="rounded-2xl border border-black/10 p-3"
+                  >
+                    <ProductRow
+                      product={p}
+                      action={
+                        <button
+                          type="button"
+                          onClick={() => onToggle(p)}
+                          aria-pressed={added}
+                          aria-label={`${added ? "Remove" : "Add"} ${p.name} ${
+                            added ? "from" : "to"
+                          } plan`}
+                          className={`shrink-0 rounded-full px-3.5 py-2 text-xs transition ${
+                            added
+                              ? "bg-black text-white"
+                              : "border border-black/20 hover:border-black"
+                          }`}
+                        >
+                          {added ? "Added ✓" : "Add"}
+                        </button>
+                      }
+                    />
                   </li>
                 )
               })}

@@ -18,8 +18,12 @@ export default function Hero() {
             and guides you to what actually works, for you.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a href="#plan" className="btn btn-dark">Build my baseline</a>
-            <a href="#platform" className="btn btn-light">See how it works</a>
+            <a href="#plan" className="btn btn-dark">
+              Build my baseline
+            </a>
+            <a href="#platform" className="btn btn-light">
+              See how it works
+            </a>
           </div>
           <dl className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-black/10 pt-6 text-sm">
             <div>
@@ -38,11 +42,20 @@ export default function Hero() {
         </div>
         <Reveal delay={120}>
           <div className="relative rounded-[28px] bg-white p-6 shadow-[0_30px_80px_-40px_rgba(0,0,0,.35)] sm:p-10">
-            <ScoreRing scores={baselineScores} caption="Sample profile · illustrative data" />
+            <ScoreRing
+              scores={baselineScores}
+              caption="Sample profile · illustrative data"
+            />
             <div className="mt-6 flex items-center gap-3 rounded-2xl bg-canvas p-3 text-sm">
-              <span className="grid size-8 place-items-center rounded-full bg-sleep text-white" aria-hidden="true">↑</span>
+              <span
+                className="grid size-8 place-items-center rounded-full bg-sleep text-white"
+                aria-hidden="true"
+              >
+                ↑
+              </span>
               <span>
-                <b className="font-medium">Sleep +6</b> since last re-score. Magnesium and a fixed wake time are working.
+                <b className="font-medium">Sleep +6</b> since last re-score.
+                Magnesium and a fixed wake time are working.
               </span>
             </div>
           </div>

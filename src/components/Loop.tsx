@@ -15,14 +15,18 @@ export default function Loop() {
           {loopSteps.map((step, i) => (
             <li key={step.title} className="bg-black p-6 sm:p-8">
               <Reveal delay={i * 90}>
-                <span className="text-sm tabular-nums text-white/40">0{i + 1}</span>
+                <span className="text-sm tabular-nums text-white/40">
+                  0{i + 1}
+                </span>
                 <h3 className="mt-16 text-3xl font-light">{step.title}</h3>
                 <p className="mt-3 leading-7 text-white/65">{step.text}</p>
               </Reveal>
             </li>
           ))}
         </ol>
-        <p className="mt-6 text-sm text-white/50">↻ Then repeat. Re-scoring every 90 days keeps your plan current.</p>
+        <p className="mt-6 text-sm text-white/50">
+          ↻ Then repeat. Re-scoring every 90 days keeps your plan current.
+        </p>
       </div>
     </section>
   )

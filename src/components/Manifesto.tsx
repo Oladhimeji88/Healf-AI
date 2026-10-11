@@ -12,8 +12,8 @@ export default function Manifesto() {
         </p>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-black/65">
           For too long, wellbeing has been a shelf of promises. We're building
-          the standard: a shared, measurable definition across four Pillars,
-          and the technology to help every person move towards it.
+          the standard: a shared, measurable definition across four Pillars, and
+          the technology to help every person move towards it.
         </p>
       </Reveal>
     </section>

@@ -11,7 +11,8 @@ function status(b: Biomarker) {
 
 function RangeBar({ b }: { b: Biomarker }) {
   const span = b.max - b.min
-  const pct = (v: number) => `${Math.min(100, Math.max(0, ((v - b.min) / span) * 100))}%`
+  const pct = (v: number) =>
+    `${Math.min(100, Math.max(0, ((v - b.min) / span) * 100))}%`
   const s = status(b)
   return (
     <li className="py-4">
@@ -28,14 +29,19 @@ function RangeBar({ b }: { b: Biomarker }) {
       >
         <div
           className="absolute inset-y-0 rounded-full bg-[#4f8a5b]/30"
-          style={{ left: pct(b.optimal[0]), width: `calc(${pct(b.optimal[1])} - ${pct(b.optimal[0])})` }}
+          style={{
+            left: pct(b.optimal[0]),
+            width: `calc(${pct(b.optimal[1])} - ${pct(b.optimal[0])})`,
+          }}
         />
         <div
           className="absolute top-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow"
           style={{ left: pct(b.value), background: s.tone }}
         />
       </div>
-      <p className="mt-2 text-xs" style={{ color: s.tone }}>{s.text}</p>
+      <p className="mt-2 text-xs" style={{ color: s.tone }}>
+        {s.text}
+      </p>
     </li>
   )
 }
@@ -45,7 +51,12 @@ export default function Bloods() {
     <section id="bloods" className="bg-canvas">
       <div className="page-section grid gap-4 py-20 lg:grid-cols-2 lg:py-28">
         <Reveal className="relative min-h-[420px] overflow-hidden rounded-[28px] lg:min-h-[640px]">
-          <img src={`${ASSETS}/9bd6e.png`} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+          <img
+            src={`${ASSETS}/9bd6e.png`}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 size-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute bottom-0 p-6 text-white sm:p-10">
             <p className="eyebrow !text-white/70">Healf Bloods</p>
@@ -56,7 +67,9 @@ export default function Bloods() {
               A simple at-home test. Clinician-reviewed results that feed
               directly into your Healf Score and plan.
             </p>
-            <a href="#plan" className="btn btn-light mt-6">Start testing</a>
+            <a href="#plan" className="btn btn-light mt-6">
+              Start testing
+            </a>
           </div>
         </Reveal>
 
@@ -66,7 +79,9 @@ export default function Bloods() {
               <p className="eyebrow">Sample report</p>
               <h3 className="mt-2 text-2xl font-light">Biomarker overview</h3>
             </div>
-            <span className="rounded-full bg-canvas px-3 py-1 text-xs">Illustrative</span>
+            <span className="rounded-full bg-canvas px-3 py-1 text-xs">
+              Illustrative
+            </span>
           </div>
           <ul className="mt-4 divide-y divide-black/10">
             {biomarkers.map((b) => (

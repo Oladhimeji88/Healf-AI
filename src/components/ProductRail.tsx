@@ -2,23 +2,29 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { ASSETS, formatPrice, type Product } from "../data/content"
 
 type Props = {
+  id?: string
   title: string
   subtitle?: ReactNode
   products: Product[]
   onAdd: (product: Product) => void
 }
 
-export default function ProductRail({ title, subtitle, products, onAdd }: Props) {
+export default function ProductRail({
+  id,
+  title,
+  subtitle,
+  products,
+  onAdd,
+}: Props) {
   const railRef = useRef<HTMLDivElement>(null)
-  const [edges, setEdges] = useState({ start: true, end: false })
+  const [atStart, setAtStart] = useState(true)
+  const [atEnd, setAtEnd] = useState(false)
 
   const updateEdges = useCallback(() => {
     const el = railRef.current
     if (!el) return
-    setEdges({
-      start: el.scrollLeft <= 1,
-      end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 1,
-    })
+    setAtStart(el.scrollLeft <= 1)
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1)
   }, [])
 
   useEffect(() => {
@@ -34,10 +40,10 @@ export default function ProductRail({ title, subtitle, products, onAdd }: Props)
   }
 
   const headingId = `rail-${title.toLowerCase().replace(/\s+/g, "-")}`
-  const noRail = edges.start && edges.end
+  const noRail = atStart && atEnd
 
   return (
-    <section className="page-section" aria-labelledby={headingId}>
+    <section id={id} className="page-section" aria-labelledby={headingId}>
       <div className="mb-8 flex items-end justify-between gap-4">
         <div>
           <h2 id={headingId} className="section-title">
@@ -51,7 +57,7 @@ export default function ProductRail({ title, subtitle, products, onAdd }: Props)
               type="button"
               className="rail-arrow disabled:opacity-30"
               aria-label={`Scroll ${title} left`}
-              disabled={edges.start}
+              disabled={atStart}
               onClick={() => scrollBy(-1)}
             >
               ‹
@@ -60,7 +66,7 @@ export default function ProductRail({ title, subtitle, products, onAdd }: Props)
               type="button"
               className="rail-arrow disabled:opacity-30"
               aria-label={`Scroll ${title} right`}
-              disabled={edges.end}
+              disabled={atEnd}
               onClick={() => scrollBy(1)}
             >
               ›
@@ -74,7 +80,7 @@ export default function ProductRail({ title, subtitle, products, onAdd }: Props)
             className="min-w-[78vw] snap-start sm:min-w-[310px] lg:min-w-0"
             key={product.id}
           >
-            <div className="group relative aspect-[340/436] overflow-hidden rounded-lg bg-[#f5f5f5]">
+            <div className="group relative aspect-[340/436] overflow-hidden rounded-lg bg-canvas">
               <img
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
                 src={`${ASSETS}/${product.image}`}
@@ -106,7 +112,7 @@ export default function ProductRail({ title, subtitle, products, onAdd }: Props)
               <ul className="mt-3 flex flex-wrap gap-2">
                 {product.badges.map((badge) => (
                   <li
-                    className="rounded-full bg-[#f1f1f1] px-2.5 py-1 text-[11px]"
+                    className="rounded-full bg-canvas px-2.5 py-1 text-[11px]"
                     key={badge}
                   >
                     {badge}

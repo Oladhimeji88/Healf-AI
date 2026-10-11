@@ -109,12 +109,6 @@ export const moreArticles = [
   "Sleeping Apart, Together: How Couples Can Bridge The Sleep Divide",
 ]
 
-export const curationSteps = [
-  { image: "5b27f.png", number: "01", title: "The Discovery" },
-  { image: "a01c3.png", number: "02", title: "Expert Validation" },
-  { image: "baa59.png", number: "03", title: "Community Testing" },
-]
-
 export const promises = [
   "365 Day Free Returns",
   "Free Delivery Over £50",
@@ -155,9 +149,7 @@ export const footerColumns = [
   },
 ]
 
-export const allProducts: Product[] = [...bestSellers, ...certified].filter(
-  (p, i, all) => all.findIndex((q) => q.id === p.id) === i,
-)
+export const allProducts: Product[] = [...bestSellers, ...certified]
 
 const gbp = new Intl.NumberFormat("en-GB", {
   style: "currency",

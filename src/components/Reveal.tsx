@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react"
+import { useEffect, useRef, type ReactNode } from "react"
 
 export default function Reveal({
   children,
@@ -10,18 +10,18 @@ export default function Reveal({
   delay?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [shown, setShown] = useState(false)
 
   useEffect(() => {
     const el = ref.current
-    if (!el || !("IntersectionObserver" in window)) {
-      setShown(true)
+    if (!el) return
+    if (!("IntersectionObserver" in window)) {
+      el.classList.add("is-in")
       return
     }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShown(true)
+          el.classList.add("is-in")
           io.disconnect()
         }
       },
@@ -35,7 +35,7 @@ export default function Reveal({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`reveal ${shown ? "is-in" : ""} ${className}`}
+      className={`reveal ${className}`}
     >
       {children}
     </div>

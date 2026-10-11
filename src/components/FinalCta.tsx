@@ -12,7 +12,9 @@ export default function FinalCta() {
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/65">
             Build your baseline in minutes, and let the platform do the rest.
           </p>
-          <a href="#plan" className="btn btn-light mt-9">Build my baseline</a>
+          <a href="#plan" className="btn btn-light mt-9">
+            Build my baseline
+          </a>
         </div>
       </Reveal>
     </section>

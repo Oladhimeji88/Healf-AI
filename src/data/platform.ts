@@ -3,10 +3,10 @@ export type PillarId = "eat" | "move" | "mind" | "sleep"
 export const PILLAR_ORDER: PillarId[] = ["eat", "move", "mind", "sleep"]
 
 export const PILLAR_COLORS: Record<PillarId, string> = {
-  eat: "#6f9d6a",
-  move: "#d9825b",
-  mind: "#8c85c7",
-  sleep: "#4a6a9c",
+  eat: "var(--color-eat)",
+  move: "var(--color-move)",
+  mind: "var(--color-mind)",
+  sleep: "var(--color-sleep)",
 }
 
 export type Pillar = {
@@ -26,7 +26,11 @@ export const pillars: Pillar[] = [
     definition:
       "Nutritional status, not just nutrition. How well your body is actually fuelled, absorbing and repairing.",
     signals: ["Vitamin D", "Ferritin", "Omega-3 Index", "HbA1c", "Gut markers"],
-    levers: ["Protein & fibre targets", "Targeted supplementation", "Hydration & electrolytes"],
+    levers: [
+      "Protein & fibre targets",
+      "Targeted supplementation",
+      "Hydration & electrolytes",
+    ],
   },
   {
     id: "move",
@@ -35,7 +39,11 @@ export const pillars: Pillar[] = [
     definition:
       "The capacity of your body to do work and recover from it, across strength, aerobic base and mobility.",
     signals: ["Resting heart rate", "HRV", "Daily activity", "Recovery load"],
-    levers: ["Zone 2 base building", "Progressive strength", "Recovery protocols"],
+    levers: [
+      "Zone 2 base building",
+      "Progressive strength",
+      "Recovery protocols",
+    ],
   },
   {
     id: "mind",
@@ -43,8 +51,17 @@ export const pillars: Pillar[] = [
     image: "1de3b.png",
     definition:
       "Stress resilience, focus and mood: how steadily your nervous system holds under real life.",
-    signals: ["Stress load", "Focus windows", "Mood check-ins", "Cortisol rhythm"],
-    levers: ["Breath & nervous system work", "Deep-work scheduling", "Evidence-led adaptogens"],
+    signals: [
+      "Stress load",
+      "Focus windows",
+      "Mood check-ins",
+      "Cortisol rhythm",
+    ],
+    levers: [
+      "Breath & nervous system work",
+      "Deep-work scheduling",
+      "Evidence-led adaptogens",
+    ],
   },
   {
     id: "sleep",
@@ -53,7 +70,11 @@ export const pillars: Pillar[] = [
     definition:
       "The foundation the other three depend on. Duration, regularity and the quality of deep and REM sleep.",
     signals: ["Sleep duration", "Regularity", "Deep & REM", "Overnight HRV"],
-    levers: ["Light & timing", "Temperature & environment", "Magnesium & wind-down rituals"],
+    levers: [
+      "Light & timing",
+      "Temperature & environment",
+      "Magnesium & wind-down rituals",
+    ],
   },
 ]
 
@@ -159,12 +180,47 @@ export type Biomarker = {
 }
 
 export const biomarkers: Biomarker[] = [
-  { name: "Vitamin D", value: 38, unit: "nmol/L", min: 0, max: 150, optimal: [75, 125] },
-  { name: "Ferritin", value: 62, unit: "µg/L", min: 0, max: 200, optimal: [50, 150] },
-  { name: "Omega-3 Index", value: 5.1, unit: "%", min: 0, max: 14, optimal: [8, 12] },
+  {
+    name: "Vitamin D",
+    value: 38,
+    unit: "nmol/L",
+    min: 0,
+    max: 150,
+    optimal: [75, 125],
+  },
+  {
+    name: "Ferritin",
+    value: 62,
+    unit: "µg/L",
+    min: 0,
+    max: 200,
+    optimal: [50, 150],
+  },
+  {
+    name: "Omega-3 Index",
+    value: 5.1,
+    unit: "%",
+    min: 0,
+    max: 14,
+    optimal: [8, 12],
+  },
   { name: "hs-CRP", value: 2.4, unit: "mg/L", min: 0, max: 5, optimal: [0, 1] },
-  { name: "HbA1c", value: 34, unit: "mmol/mol", min: 15, max: 60, optimal: [20, 38] },
-  { name: "TSH", value: 1.8, unit: "mIU/L", min: 0, max: 6, optimal: [0.5, 2.5] },
+  {
+    name: "HbA1c",
+    value: 34,
+    unit: "mmol/mol",
+    min: 15,
+    max: 60,
+    optimal: [20, 38],
+  },
+  {
+    name: "TSH",
+    value: 1.8,
+    unit: "mIU/L",
+    min: 0,
+    max: 6,
+    optimal: [0.5, 2.5],
+  },
 ]
 
 export const loopSteps = [
@@ -187,7 +243,22 @@ export const loopSteps = [
 ]
 
 export const standardSteps = [
-  { image: "5b27f.png", number: "01", title: "Discovery", text: "We source from labs, clinicians and founders worldwide." },
-  { image: "a01c3.png", number: "02", title: "Expert validation", text: "Ingredients, dosing and claims are assessed against the evidence." },
-  { image: "baa59.png", number: "03", title: "Community testing", text: "Real people use it for weeks and report back before it earns a place." },
+  {
+    image: "5b27f.png",
+    number: "01",
+    title: "Discovery",
+    text: "We source from labs, clinicians and founders worldwide.",
+  },
+  {
+    image: "a01c3.png",
+    number: "02",
+    title: "Expert validation",
+    text: "Ingredients, dosing and claims are assessed against the evidence.",
+  },
+  {
+    image: "baa59.png",
+    number: "03",
+    title: "Community testing",
+    text: "Real people use it for weeks and report back before it earns a place.",
+  },
 ]

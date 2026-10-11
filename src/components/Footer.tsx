@@ -19,7 +19,8 @@ export default function Footer() {
           <div>
             <h2 className="text-2xl font-medium">Learn</h2>
             <p className="mt-3 text-sm">
-              Weekly research, new findings and product news from the Healf team.
+              Weekly research, new findings and product news from the Healf
+              team.
             </p>
             <form
               onSubmit={onSubmit}
@@ -57,7 +58,12 @@ export default function Footer() {
             </nav>
           ))}
         </div>
-        <img src={`${ASSETS}/6ade8.svg`} alt="Healf" className="my-12 w-full invert" />
+        <img
+          src={`${ASSETS}/6ade8.svg`}
+          alt="Healf"
+          loading="lazy"
+          className="my-12 w-full invert"
+        />
         <div className="flex flex-col justify-between gap-3 text-sm sm:flex-row">
           <p>Copyright © 2026, Healf. All rights reserved.</p>
           <p>EN · GBP</p>

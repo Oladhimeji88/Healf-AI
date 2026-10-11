@@ -18,12 +18,12 @@ export default function useCountUp(target: number, duration = 900) {
       const eased = 1 - Math.pow(1 - t, 3)
       const next = origin + (target - origin) * eased
       from.current = next
-      setValue(next)
+      setValue(Math.round(next))
       if (t < 1) frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frame)
   }, [target, duration])
 
-  return Math.round(value)
+  return value
 }

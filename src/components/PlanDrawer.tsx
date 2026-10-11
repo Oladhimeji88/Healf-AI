@@ -1,7 +1,13 @@
 import { useEffect, useRef } from "react"
-import { ASSETS, formatPrice, type Product } from "../data/content"
+import { formatPrice, type Product } from "../data/content"
+import ProductRow from "./ProductRow"
 
-type Props = { open: boolean; onClose: () => void; plan: Product[]; onRemove: (product: Product) => void }
+type Props = {
+  open: boolean
+  onClose: () => void
+  plan: Product[]
+  onRemove: (product: Product) => void
+}
 
 export default function PlanDrawer({ open, onClose, plan, onRemove }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -22,10 +28,15 @@ export default function PlanDrawer({ open, onClose, plan, onRemove }: Props) {
   const total = plan.reduce((sum, p) => sum + p.price, 0)
 
   return (
-    <div className={`fixed inset-0 z-[70] ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+    <div
+      className={`fixed inset-0 z-[70] ${open ? "" : "pointer-events-none"}`}
+      aria-hidden={!open}
+    >
       <div
         onClick={onClose}
-        className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+          open ? "opacity-100" : "opacity-0"
+        }`}
       />
       <aside
         role="dialog"
@@ -37,25 +48,37 @@ export default function PlanDrawer({ open, onClose, plan, onRemove }: Props) {
       >
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-light">Your plan</h2>
-          <button ref={closeRef} type="button" onClick={onClose} aria-label="Close plan" className="grid size-9 place-items-center rounded-full border border-black/20 text-lg">
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Close plan"
+            className="grid size-9 place-items-center rounded-full border border-black/20 text-lg"
+          >
             ×
           </button>
         </div>
         {plan.length === 0 ? (
-          <p className="mt-10 text-black/60">Nothing here yet. Choose a goal and add what your data supports.</p>
+          <p className="mt-10 text-black/60">
+            Nothing here yet. Choose a goal and add what your data supports.
+          </p>
         ) : (
           <ul className="mt-6 flex-1 divide-y divide-black/10 overflow-y-auto">
             {plan.map((p) => (
-              <li key={p.id} className="flex items-center gap-3 py-4">
-                <img src={`${ASSETS}/${p.image}`} alt="" className="size-16 rounded-xl bg-canvas object-cover" />
-                <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-bold tracking-wide text-black/50">{p.brand}</p>
-                  <p className="truncate text-sm">{p.name}</p>
-                  <p className="text-sm text-black/60">{formatPrice(p.price)}</p>
-                </div>
-                <button type="button" onClick={() => onRemove(p)} aria-label={`Remove ${p.name}`} className="text-sm underline">
-                  Remove
-                </button>
+              <li key={p.id} className="py-4">
+                <ProductRow
+                  product={p}
+                  action={
+                    <button
+                      type="button"
+                      onClick={() => onRemove(p)}
+                      aria-label={`Remove ${p.name}`}
+                      className="text-sm underline"
+                    >
+                      Remove
+                    </button>
+                  }
+                />
               </li>
             ))}
           </ul>
@@ -65,10 +88,16 @@ export default function PlanDrawer({ open, onClose, plan, onRemove }: Props) {
             <span>Subtotal</span>
             <span className="tabular-nums">{formatPrice(total)}</span>
           </div>
-          <button type="button" disabled={plan.length === 0} className="btn btn-dark mt-4 w-full disabled:opacity-40">
+          <button
+            type="button"
+            disabled={plan.length === 0}
+            className="btn btn-dark mt-4 w-full disabled:opacity-40"
+          >
             Continue
           </button>
-          <p className="mt-3 text-xs text-black/50">Prototype: checkout isn't connected.</p>
+          <p className="mt-3 text-xs text-black/50">
+            Prototype: checkout isn't connected.
+          </p>
         </div>
       </aside>
     </div>
