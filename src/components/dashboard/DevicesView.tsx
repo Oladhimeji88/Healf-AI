@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { ASSETS } from "../../data/content"
 import {
   devices,
   scopes,
@@ -8,7 +9,6 @@ import {
 } from "../../data/devices"
 import type { Persona } from "../../hooks/usePersona"
 import ConnectDialog from "./ConnectDialog"
-import DeviceArt from "./DeviceArt"
 
 type Connecting = {
   device: Device
@@ -86,13 +86,20 @@ export default function DevicesView({ me }: { me: Persona }) {
               key={d.id}
               className="flex flex-col rounded-[24px] bg-white p-6"
             >
-              <div className="grid aspect-[5/3] place-items-center rounded-2xl bg-canvas">
-                <DeviceArt
-                  kind={d.art}
-                  strap={d.strap}
-                  accent={d.accent}
-                  knurled={d.knurled}
-                  className="h-[88%]"
+              <div
+                className={`aspect-[5/3] overflow-hidden rounded-2xl ${
+                  d.contain ? "bg-[#f5f5f5]" : "bg-canvas"
+                }`}
+              >
+                <img
+                  src={`${ASSETS}/${d.image}`}
+                  alt={`${d.name}`}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ objectPosition: d.position }}
+                  className={`size-full ${
+                    d.contain ? "scale-[1.35] object-contain" : "object-cover"
+                  }`}
                 />
               </div>
               <div className="mt-5 flex items-center gap-3">
@@ -207,11 +214,33 @@ export default function DevicesView({ me }: { me: Persona }) {
         })}
       </ul>
 
+      <p className="mt-6 max-w-3xl text-xs leading-5 text-black/50">
+        Photos:{" "}
+        {devices.map((d, i) => (
+          <span key={d.id}>
+            {i > 0 && " · "}
+            {d.name}{" "}
+            {d.credit.url ? (
+              <a
+                href={d.credit.url}
+                target="_blank"
+                rel="noreferrer"
+                className="underline"
+              >
+                {d.credit.text}
+              </a>
+            ) : (
+              d.credit.text
+            )}
+          </span>
+        ))}
+        . Photos show example models and are not official Healf imagery.
+      </p>
       <p className="mt-6 max-w-2xl text-xs leading-5 text-black/50">
-        Device images are illustrations, not official product photos. Prototype:
-        connections are simulated and no data is read from any device. A real
-        version would link through Apple Health, Health Connect or a provider
-        such as Terra, with explicit consent and the right to delete your data.
+        Prototype: connections are simulated and no data is read from any
+        device. A real version would link through Apple Health, Health Connect
+        or a provider such as Terra, with explicit consent and the right to
+        delete your data.
       </p>
 
       {pending && (

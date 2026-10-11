@@ -143,7 +143,7 @@ export default function Bloods() {
             <div className="rounded-[24px] bg-white p-6 sm:p-8">
               <h3 className="text-2xl font-light">Lite · 23 biomarkers</h3>
               <p className="mt-2 leading-6 text-black/65">
-                Heart, cholesterol, vitamins and liver. From £79.
+                Heart, cholesterol, vitamins and liver.
               </p>
             </div>
             <div className="rounded-[24px] bg-white p-6 sm:p-8">
@@ -156,9 +156,9 @@ export default function Bloods() {
             </div>
           </div>
           <p className="mt-4 text-xs leading-5 text-black/50">
-            Available in the UK only. Not suitable if you are pregnant or under
-            18. Healf recommends testing every six months. Details from
-            healf.com/zone.
+            Tests start from £79. Available in the UK only. Not suitable if you
+            are pregnant or under 18. Healf recommends testing every six months.
+            Details from healf.com/zone.
           </p>
         </Reveal>
       </div>

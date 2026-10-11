@@ -6,17 +6,20 @@ export type Scope = {
   detail: string
 }
 
-import type { ArtKind } from "../components/dashboard/DeviceArt"
+export type Credit = {
+  text: string
+  url?: string
+}
 
 export type Device = {
   id: string
   name: string
   via: string
   note?: string
-  art: ArtKind
-  strap: string
-  accent?: string
-  knurled?: boolean
+  image: string
+  position?: string
+  contain?: boolean
+  credit: Credit
 }
 
 export const scopes: Scope[] = [
@@ -40,43 +43,58 @@ export const devices: Device[] = [
     name: "Apple Watch",
     via: "Apple Health",
     note: "Needs the Healf iPhone app",
-    art: "square",
-    strap: "#3a3a3f",
+    image: "devices/apple.jpg",
+    credit: {
+      text: "fancycrave1, CC0",
+      url: "https://commons.wikimedia.org/wiki/File:Apple_Watch-.jpg",
+    },
   },
   {
     id: "garmin",
     name: "Garmin",
     via: "Garmin Connect",
-    art: "round",
-    strap: "#4d6b4a",
-    accent: "#6f9d6a",
+    image: "devices/garmin.jpg",
+    position: "50% 45%",
+    credit: {
+      text: "Melyanac, CC0",
+      url: "https://commons.wikimedia.org/wiki/File:Garmin_Forerunner_55.jpg",
+    },
   },
-  { id: "oura", name: "Oura Ring", via: "Oura", art: "ring", strap: "#000" },
+  {
+    id: "oura",
+    name: "Oura Ring",
+    via: "Oura",
+    image: "devices/oura.jpg",
+    contain: true,
+    credit: { text: "healf.com" },
+  },
   {
     id: "whoop",
     name: "Whoop",
     via: "Whoop",
-    art: "band",
-    strap: "#26262b",
-    accent: "#d9825b",
+    image: "devices/whoop.jpg",
+    credit: { text: "healf.com" },
   },
   {
     id: "fitbit",
     name: "Fitbit",
     via: "Fitbit",
-    art: "tracker",
-    strap: "#4a6a9c",
-    accent: "#8c85c7",
+    image: "devices/fitbit.jpg",
+    credit: {
+      text: "Kārlis Dambrāns, CC BY 2.0",
+      url: "https://commons.wikimedia.org/wiki/File:Fitbit_Versa_(44383301630).jpg",
+    },
   },
   {
     id: "samsung",
     name: "Galaxy Watch",
     via: "Health Connect",
     note: "Needs the Healf Android app",
-    art: "round",
-    strap: "#8c85c7",
-    accent: "#d9825b",
-    knurled: true,
+    image: "devices/samsung.jpg",
+    credit: {
+      text: "Dinkun Chen, CC BY-SA 4.0",
+      url: "https://commons.wikimedia.org/wiki/File:SAMSUNG_Galaxy_Watch_(3).jpg",
+    },
   },
 ]
 
