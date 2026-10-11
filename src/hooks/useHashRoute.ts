@@ -2,8 +2,12 @@ import { useEffect, useState } from "react"
 
 export type Route = "home" | "dashboard" | "start"
 
-const read = (): Route =>
-  window.location.hash.startsWith("#/dashboard") ? "dashboard" : "home"
+const read = (): Route => {
+  const hash = window.location.hash
+  if (hash.startsWith("#/dashboard")) return "dashboard"
+  if (hash.startsWith("#/start")) return "start"
+  return "home"
+}
 
 export default function useHashRoute() {
   const [route, setRoute] = useState<Route>(read)
