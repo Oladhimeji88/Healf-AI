@@ -3,6 +3,7 @@ import { ASSETS, type Product } from "../../data/content"
 import BiomarkersView from "./BiomarkersView"
 import type { Persona } from "../../hooks/usePersona"
 import Overview from "./Overview"
+import DevicesView from "./DevicesView"
 import MembershipView from "./MembershipView"
 import PlanView from "./PlanView"
 import type { DashboardView } from "./types"
@@ -15,6 +16,7 @@ type NavItem = {
 const views: NavItem[] = [
   { id: "overview", label: "Overview" },
   { id: "plan", label: "My plan" },
+  { id: "devices", label: "Devices" },
   { id: "membership", label: "Membership" },
   { id: "biomarkers", label: "Biomarkers" },
 ]
@@ -111,6 +113,7 @@ export default function Dashboard({ me, plan, onRemove }: DashboardProps) {
           {view === "plan" && (
             <PlanView plan={plan} onRemove={onRemove} onNavigate={setView} />
           )}
+          {view === "devices" && <DevicesView me={me} />}
           {view === "membership" && <MembershipView me={me} plan={plan} />}
           {view === "biomarkers" && <BiomarkersView />}
           <p className="mt-6 text-xs text-black/50">

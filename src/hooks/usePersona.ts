@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
+import type { DeviceState } from "../data/devices"
 import type { PillarId, Scores } from "../data/platform"
 
 export type Mood = "drained" | "low" | "okay" | "good" | "great"
@@ -15,6 +16,7 @@ type State = {
   onboarded: boolean
   scores: Scores | null
   membership: Membership
+  devices: Record<string, DeviceState>
   day: string
   mood: Mood | null
   done: PillarId[]
@@ -29,6 +31,7 @@ const fresh = (): State => ({
   onboarded: false,
   scores: null,
   membership: { active: false, cadenceWeeks: 8, paused: false },
+  devices: {},
   day: today(),
   mood: null,
   done: [],

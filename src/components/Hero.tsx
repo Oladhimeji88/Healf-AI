@@ -1,7 +1,4 @@
-import { baselineScores } from "../data/platform"
 import { ASSETS } from "../data/content"
-import Reveal from "./Reveal"
-import ScoreRing from "./ScoreRing"
 
 export default function Hero() {
   return (
@@ -15,7 +12,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/55 to-black/10 max-lg:from-black/80 max-lg:via-black/60 max-lg:to-black/50" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
 
-      <div className="mx-auto grid min-h-[640px] max-w-[1440px] items-center gap-12 px-4 py-14 sm:py-20 lg:min-h-[min(820px,calc(100dvh-4rem))] lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-24">
+      <div className="mx-auto grid min-h-[640px] max-w-[1440px] items-center gap-12 px-4 py-14 sm:py-20 lg:min-h-[min(820px,calc(100dvh-4rem))] lg:py-24">
         <div>
           <p className="eyebrow !text-white/70">Wellbeing technology</p>
           <h1 className="mt-5 text-[clamp(3rem,9vw,7.25rem)] font-light leading-[0.95] tracking-tight">
@@ -53,29 +50,6 @@ export default function Hero() {
             </div>
           </dl>
         </div>
-        <Reveal
-          delay={120}
-          className="w-full max-w-[320px] lg:ml-auto lg:self-end"
-        >
-          <div className="rounded-[28px] border border-white/15 bg-black/40 p-5 backdrop-blur-xl">
-            <ScoreRing
-              onDark
-              scores={baselineScores}
-              caption="Sample profile · illustrative data"
-            />
-            <div className="mt-5 flex items-center gap-3 rounded-2xl bg-white/10 p-3 text-sm">
-              <span
-                className="grid size-8 shrink-0 place-items-center rounded-full bg-sleep text-white"
-                aria-hidden="true"
-              >
-                ↑
-              </span>
-              <span>
-                <b className="font-medium">Sleep +6</b> since last re-score.
-              </span>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   )

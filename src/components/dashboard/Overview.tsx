@@ -8,6 +8,7 @@ import {
 } from "../../data/platform"
 import type { Persona } from "../../hooks/usePersona"
 import { RangeBar, status } from "../Bloods"
+import { devices as deviceList, timeAgo } from "../../data/devices"
 import ScoreRing from "../ScoreRing"
 import CheckIn from "./CheckIn"
 import TrendChart from "./TrendChart"
@@ -16,6 +17,28 @@ import type { DashboardView } from "./types"
 
 const trend = [61, 63, 62, 66, 68, 67, 70, 71, 72, 73, 73, 74]
 const WEEK = ["M", "T", "W", "T", "F", "S", "S"]
+const vitals = [
+  {
+    scope: "sleep",
+    label: "Sleep",
+    value: "7h 12m",
+    note: "avg, last 7 nights",
+  },
+  {
+    scope: "heart",
+    label: "Resting HR",
+    value: "58 bpm",
+    note: "-2 vs last month",
+  },
+  { scope: "heart", label: "HRV", value: "62 ms", note: "+5 vs last month" },
+  {
+    scope: "activity",
+    label: "Active days",
+    value: "5 / 7",
+    note: "this week",
+  },
+] as const
+
 const card = "rounded-[24px] bg-white p-6 sm:p-8"
 
 type Props = {
@@ -39,6 +62,8 @@ export default function Overview({ me, plan, onNavigate }: Props) {
   )
   const focusDone = me.done.includes(focusId)
   const others = PILLAR_ORDER.filter((id) => id !== focusId)
+  const connected =
+    Object.keys(me.devices).length > 0 ? Object.keys(me.devices) : null
   const attention = biomarkers.filter((b) => status(b).text !== "Optimal")
   const total = plan.reduce((sum, p) => sum + p.price, 0)
   const todayIdx = (new Date().getDay() + 6) % 7
@@ -154,6 +179,56 @@ export default function Overview({ me, plan, onNavigate }: Props) {
               <span>Now</span>
             </div>
           </>
+        )}
+      </section>
+
+      <section className={`${card} lg:col-span-12`} aria-labelledby="vitals-h">
+        {connected ? (
+          <>
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h2 id="vitals-h" className="eyebrow">
+                From your {deviceList.find((d) => d.id === connected[0])?.name}
+              </h2>
+              <span className="text-sm text-black/55">
+                Synced {timeAgo(me.devices[connected[0]].syncedAt)} · simulated
+                data
+              </span>
+            </div>
+            <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-4">
+              {vitals
+                .filter((v) =>
+                  me.devices[connected[0]].scopes.includes(v.scope),
+                )
+                .map((v) => (
+                  <div key={v.label}>
+                    <dt className="text-sm text-black/55">{v.label}</dt>
+                    <dd className="mt-1 text-2xl font-light tabular-nums">
+                      {v.value}
+                    </dd>
+                    <dd className="text-xs text-black/50">{v.note}</dd>
+                  </div>
+                ))}
+            </dl>
+          </>
+        ) : (
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h2 id="vitals-h" className="eyebrow">
+                Connect your watch
+              </h2>
+              <p className="mt-2 max-w-xl text-lg leading-7">
+                Link a watch or ring and your sleep and heart data will shape
+                your plan automatically.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => onNavigate("devices")}
+              className="btn btn-dark"
+            >
+              Connect a device
+            </button>
+          </div>
         )}
       </section>
 

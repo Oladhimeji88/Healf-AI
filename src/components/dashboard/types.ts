@@ -1,1 +1,1 @@
-export type DashboardView = "overview" | "plan" | "membership" | "biomarkers"
+export type DashboardView = "overview" | "plan" | "membership" | "devices" | "biomarkers"
