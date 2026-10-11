@@ -2,14 +2,14 @@ import { ASSETS } from "../data/content"
 import { biomarkers, type Biomarker } from "../data/platform"
 import Reveal from "./Reveal"
 
-function status(b: Biomarker) {
+export function status(b: Biomarker) {
   const [lo, hi] = b.optimal
   if (b.value < lo) return { text: "Below optimal", tone: "#c9822b" }
   if (b.value > hi) return { text: "Above optimal", tone: "#c9822b" }
   return { text: "Optimal", tone: "#4f8a5b" }
 }
 
-function RangeBar({ b }: { b: Biomarker }) {
+export function RangeBar({ b }: { b: Biomarker }) {
   const span = b.max - b.min
   const pct = (v: number) =>
     `${Math.min(100, Math.max(0, ((v - b.min) / span) * 100))}%`

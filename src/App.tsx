@@ -14,12 +14,17 @@ import PlanDrawer from "./components/PlanDrawer"
 import ProductRail from "./components/ProductRail"
 import Standard from "./components/Standard"
 import { certified } from "./data/content"
+import Dashboard from "./components/dashboard/Dashboard"
+import useHashRoute from "./hooks/useHashRoute"
 import usePlan from "./hooks/usePlan"
 
 export default function App() {
   const { plan, has, add, toggle, announcement } = usePlan()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const route = useHashRoute()
   const closeDrawer = useCallback(() => setDrawerOpen(false), [])
+
+  if (route === "dashboard") return <Dashboard plan={plan} onRemove={toggle} />
 
   return (
     <div className="min-h-dvh bg-white text-black">

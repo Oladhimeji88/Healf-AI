@@ -72,7 +72,7 @@ export default function Header({
             )}
           </button>
           <a
-            href="#plan"
+            href="#/dashboard"
             className="btn btn-dark hidden !py-2.5 sm:inline-flex"
           >
             Get started
@@ -94,6 +94,9 @@ export default function Header({
               {item.label}
             </a>
           ))}
+          <a href="#/dashboard" className="btn btn-dark mt-2 w-fit">
+            Get started
+          </a>
         </nav>
       )}
     </header>
